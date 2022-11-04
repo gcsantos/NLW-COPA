@@ -16,6 +16,9 @@ npm i short-unique-id // Criação de chave unica
 
 Front End
 npx create-next-app@latest --use-npm
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p // Arquivo de configuração
+npm i axios
 
 
 Mobile
