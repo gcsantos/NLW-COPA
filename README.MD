@@ -23,6 +23,13 @@ npm i axios
 
 Mobile
 npx create-expo-app mobile
+npm install native-base
+npx expo install react-native-svg@12.1.1
+expo install react-native-safe-area-context@3.3.2
+npm i react-native-svg-transformer // https://github.com/kristerkari/react-native-svg-transformer
+npx expo install expo-auth-session expo-random
+npx expo install expo-web-browser
+
 
 
 EXTENÇÃO VSCODE
