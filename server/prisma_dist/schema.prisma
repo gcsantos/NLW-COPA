@@ -23,8 +23,8 @@ model Poll {
   createAt DateTime @default(now())
   ownerId  String?
 
-  participants Participant[]
   owner        User?         @relation(fields: [ownerId], references: [id])
+  participants Participant[]
 }
 
 model Participant {
