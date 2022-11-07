@@ -36,3 +36,7 @@ npm install --save phosphor-react-native
 
 EXTENÇÃO VSCODE
 Prisma.prisma
+
+ya29.a0AeTM1icfFqkx0fM1W92IfhZn_FXYtDzHMTU-3m1qf5LLO8vs-Dc_nuUJIlV2JzLrOnfDvFFH_sGJNPqk0p6_28d2cbyB5i9WsDpNP07I_R7PTsSmP-H5OcnkcwoCByWg9zGyPjvb0SwuMa8hhqeGDvwsbihbaCgYKATkSARMSFQHWtWOmCR6U6uwv7jF2QILdCcW4fQ0163
+
+25 min
