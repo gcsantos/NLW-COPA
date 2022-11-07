@@ -6,6 +6,8 @@ import { Loading } from './src/components/Loading';
 import { THEME } from './src/styles/theme';
 import { SignIn } from "./src/screens/SignIn";
 import { New } from "./src/screens/New";
+import { Find } from "./src/screens/Find";
+import { Pools } from "./src/screens/Pools";
 import { AuthContextProvider } from "./src/contexts/AuthContext";
 
 export default function App() {
@@ -21,7 +23,9 @@ export default function App() {
         />
         {
           // fontsLoaded ? <SignIn /> : <Loading />
-          fontsLoaded ? <New /> : <Loading />
+          // fontsLoaded ? <New /> : <Loading />
+          // fontsLoaded ? <Find /> : <Loading />
+          fontsLoaded ? <Pools /> : <Loading />
         }
       </AuthContextProvider>
     </NativeBaseProvider>
