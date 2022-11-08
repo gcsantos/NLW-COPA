@@ -3,7 +3,6 @@
 
 generator client {
   provider = "prisma-client-js"
-  
 }
 
 generator erd {
@@ -15,7 +14,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model Poll {
   id       String   @id @default(cuid()) //ou uuid
   title    String
@@ -23,8 +21,8 @@ model Poll {
   createAt DateTime @default(now())
   ownerId  String?
 
-  owner        User?         @relation(fields: [ownerId], references: [id])
   participants Participant[]
+  owner        User?         @relation(fields: [ownerId], references: [id])
 }
 
 model Participant {
@@ -43,6 +41,7 @@ model User {
   id        String   @id @default(cuid()) //ou uuid
   name      String
   email     String   @unique
+  googleId  String?  @unique
   avatarUrl String?
   createAt  DateTime @default(now())
 
