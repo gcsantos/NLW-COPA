@@ -31,6 +31,9 @@ npm i react-native-svg-transformer // https://github.com/kristerkari/react-nativ
 npx expo install expo-auth-session expo-random
 npx expo install expo-web-browser
 npm install --save phosphor-react-native
+npm install @react-navigation/native
+npx expo install react-native-screens react-native-safe-area-context
+npm install @react-navigation/bottom-tabs
 
 
 
