@@ -49,6 +49,8 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
     }
 
     async function signInWithGoogle(access_token: string) {
+
+        // console.log("TOKEN ->", accessToken);
         try {
             setUserLoading(true);
 
