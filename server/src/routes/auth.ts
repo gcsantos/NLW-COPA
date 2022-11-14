@@ -7,9 +7,8 @@ export async function authRouts(fastify: FastifyInstance) {
 
     fastify.get('/me',
         {
-            onResponse: [authenticate]
+            onRequest: [authenticate]
         }, async (request) => {
-
             return { user: request.user }
         })
 
