@@ -1,14 +1,20 @@
+import { useCallback, useState } from "react";
 import { VStack, Icon, useToast, FlatList } from "native-base";
-import { Octicons } from "@expo/vector-icons"
+import { Octicons } from "@expo/vector-icons";
+import { useNavigation } from '@react-navigation/native';
+import { useFocusEffect } from '@react-navigation/native';
+
+
+import { api } from "../services/api";
+
 import { Button } from "../components/Button";
 import { Header } from "../components/Header";
-import { useNavigation } from '@react-navigation/native'
-import { api } from "../services/api";
-import { useEffect, useState } from "react";
 import { Loading } from "../components/Loading";
 import { PoolCard, PoolCardPros } from "../components/PoolCard";
+import { EmptyPoolList } from "../components/EmptyPoolList";
 
 export function Pools() {
+
     const [isLoading, setIsLoading] = useState(true);
     const [pools, setPools] = useState<PoolCardPros[]>([]);
 
@@ -28,17 +34,16 @@ export function Pools() {
                 title: 'Não foi possivel carregar os bolões',
                 placement: 'top',
                 bgColor: 'red.500'
-            })
-
+            });
 
         } finally {
             setIsLoading(false);
         }
     }
 
-    useEffect(() => {
+    useFocusEffect(useCallback(() => {
         fetchPools();
-    }, [])
+    }, []))
 
     return (
         <VStack flex={1} bgColor="gray.900" >
@@ -50,11 +55,17 @@ export function Pools() {
                 />
             </VStack>
 
-            <FlatList
-                data={pools}
-                keyExtractor={item => item.id}
-                renderItem={(item) => <PoolCard data={item} />}
-            />
+            {
+                isLoading ? <Loading /> :
+                    <FlatList
+                        data={pools}
+                        keyExtractor={item => item.id}
+                        renderItem={({ item }) => <PoolCard data={item} />}
+                        ListEmptyComponent={() => <EmptyPoolList />}
+                        px={5}
+                        showsVerticalScrollIndicator={false} //desabilita barra de rolagem
+                        _contentContainerStyle={{ pb: 10 }}
+                    />}
 
 
         </VStack>

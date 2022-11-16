@@ -1,10 +1,64 @@
-import { Heading, VStack } from "native-base";
+import { useState } from "react";
+import { Heading, useToast, VStack } from "native-base";
+
+import { api } from '../services/api'
 
 import { Header } from "../components/Header";
 import { Input } from "../components/Input";
 import { Button } from "../components/Button";
 
+
 export function Find() {
+
+    const [isLoading, setIsLoading] = useState(false);
+    const [code, setCode] = useState('');
+
+    const toast = useToast();
+
+    async function handleJoinPool() {
+        try {
+            setIsLoading(true);
+
+            if (!code.trim()) {
+                return toast.show({
+                    title: 'Informe o codigo do bolão',
+                    placement: 'top',
+                    bgColor: 'red.500'
+                });
+            }
+
+            await api.post('/pools/join', { code });
+
+        } catch (error) {
+            console.log(error)
+
+            if (error.response?.date?.message === 'Pool not found') {
+                return toast.show({
+                    title: 'Bolão não encontrado',
+                    placement: 'top',
+                    bgColor: 'red.500'
+                });
+            }
+
+            if (error.response?.date?.message === 'You already joined this pool') {
+                return toast.show({
+                    title: 'Você já esta nesse bolão',
+                    placement: 'top',
+                    bgColor: 'red.500'
+                });
+            }
+
+            toast.show({
+                title: 'Não foi possivel encontar o bolão',
+                placement: 'top',
+                bgColor: 'red.500'
+            });
+        } finally {
+            setIsLoading(false);
+        }
+
+    }
+
     return (
         <VStack flex={1} bgColor="gray.900" >
             <Header title="Buscar por código" showBackButton />
@@ -16,8 +70,17 @@ export function Find() {
                     seu código unico
                 </Heading>
 
-                <Input mb={2} placeholder="Qual o código do bolão ?" />
-                <Button title="BUSCAR BOLÃO" />
+                <Input
+                    mb={2}
+                    placeholder="Qual o código do bolão ?"
+                    autoCapitalize="characters" //Ficar maiusculo 
+                    onChangeText={setCode}
+                />
+                <Button
+                    title="BUSCAR BOLÃO"
+                    isLoading={isLoading}
+                    onPress={handleJoinPool}
+                />
 
             </VStack>
 
